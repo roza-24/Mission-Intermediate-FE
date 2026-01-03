@@ -1,10 +1,28 @@
-import MovieCard from "../molecules/MovieCard";
+import MovieCard from "./MovieCard";
 
-export default function MovieList({ movies }) {
+export default function MovieList({ movies, setMovies }) {
+  // DELETE
+  const handleDelete = (id) => {
+    setMovies(movies.filter((movie) => movie.id !== id));
+  };
+
+  // 🔥 UPDATE (EDIT)
+  const handleUpdate = (updatedMovie) => {
+    const updatedMovies = movies.map((movie) =>
+      movie.id === updatedMovie.id ? updatedMovie : movie
+    );
+    setMovies(updatedMovies);
+  };
+
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-6">
+    <div className="grid md:grid-cols-3 gap-4">
       {movies.map((movie) => (
-        <MovieCard key={movie.id} {...movie} />
+        <MovieCard
+          key={movie.id}
+          movie={movie}
+          onDelete={handleDelete}
+          onUpdate={handleUpdate}
+        />
       ))}
     </div>
   );

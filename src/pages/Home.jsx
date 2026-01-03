@@ -2,12 +2,14 @@ import { useState } from "react";
 import Navbar from "../components/organisms/Navbar";
 import CategoryFilter from "../components/organisms/CategoryFilter";
 import MovieList from "../components/organisms/MovieList";
-import { movies } from "../data/movies";
+import initialMovies from "../data/movies";
 import SearchBar from "../components/SearchBar";
+import AddMovieForm from "../components/AddMovieForm";
 
 export default function Home() {
   const [category, setCategory] = useState("All");
   const [search, setSearch] = useState("");
+  const [movies, setMovies] = useState(initialMovies);
 
   const filteredMovies = movies.filter((movie) => {
     const matchCat = category === "All" || movie.genre === category;
@@ -26,7 +28,8 @@ export default function Home() {
           <CategoryFilter category={category} setCategory={setCategory} />
         </SearchBar>
 
-        <MovieList movies={filteredMovies} />
+        <AddMovieForm movies={movies} setMovies={setMovies} />
+        <MovieList movies={movies} setMovies={setMovies} />
       </div>
     </div>
   );

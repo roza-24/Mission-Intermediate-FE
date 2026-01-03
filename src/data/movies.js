@@ -1,4 +1,4 @@
-export const movies = [
+const initialMovies = [
   {
     id: 1,
     title: "Inception",
@@ -39,3 +39,5 @@ export const movies = [
     trailer: "https://www.youtube.com/embed/YoHD9XEInc0"
   },
 ];
+
+export default initialMovies;

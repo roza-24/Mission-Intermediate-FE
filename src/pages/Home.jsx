@@ -4,7 +4,7 @@ import CategoryFilter from "../components/organisms/CategoryFilter";
 import MovieList from "../components/organisms/MovieList";
 import initialMovies from "../data/movies";
 import SearchBar from "../components/SearchBar";
-import AddMovieForm from "../components/AddMovieForm";
+import AddMovieForm from "../components/forms/AddMovieForm";
 
 export default function Home() {
   const [category, setCategory] = useState("All");
@@ -29,7 +29,7 @@ export default function Home() {
         </SearchBar>
 
         <AddMovieForm movies={movies} setMovies={setMovies} />
-        <MovieList movies={movies} setMovies={setMovies} />
+        <MovieList movies={filteredMovies} setMovies={setMovies} />
       </div>
     </div>
   );

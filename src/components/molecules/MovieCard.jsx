@@ -8,12 +8,12 @@ export default function MovieCard({ movie, onDelete, onUpdate }) {
 
   const handleSave = () => {
     const updatedMovie = {
-      ...movie, // 🔥 copy object lama
-      title: title, // 🔥 update field
+      ...movie,
+      title: title,
       genre: genre,
     };
 
-    onUpdate(updatedMovie); // 🔥 kirim ke parent
+    onUpdate(updatedMovie);
     setIsEdit(false);
   };
 

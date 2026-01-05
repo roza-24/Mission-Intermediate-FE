@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import { movies } from "../data/movies";
+import movies from "../data/movies";
 import { addFavorite, removeFavorite, isFavorite } from "../services/favorites";
 import { useState } from "react";
 

@@ -1,4 +1,4 @@
-import MovieCard from "./MovieCard";
+import MovieCard from "../molecules/MovieCard";
 
 export default function MovieList({ movies, setMovies }) {
   // DELETE
@@ -6,7 +6,7 @@ export default function MovieList({ movies, setMovies }) {
     setMovies(movies.filter((movie) => movie.id !== id));
   };
 
-  // 🔥 UPDATE (EDIT)
+  // UPDATE (EDIT)
   const handleUpdate = (updatedMovie) => {
     const updatedMovies = movies.map((movie) =>
       movie.id === updatedMovie.id ? updatedMovie : movie

@@ -4,54 +4,72 @@ export default function AddMovieForm({ movies, setMovies }) {
   const [title, setTitle] = useState("");
   const [genre, setGenre] = useState("");
   const [year, setYear] = useState("");
+  const [image, setImage] = useState("");
 
   const handleAddMovie = () => {
-    if (!title || !genre || !year) return;
+    if (!title || !genre || !year || !image) return;
 
     const newMovie = {
-      id: Date.now(),
+      id: crypto.randomUUID(),
       title,
       genre,
       year,
+      image,
     };
 
-    setMovies([...movies, newMovie]); // 🔥 ADD DATA
+    setMovies([...movies, newMovie]);
     setTitle("");
     setGenre("");
     setYear("");
+    setImage("");
   };
 
   return (
-    <div className="bg-white/10 p-4 rounded-xl mb-6">
-      <h2 className="font-semibold mb-3">➕ Add Movie</h2>
+    <div className="w-full bg-gray-900/80 backdrop-blur rounded-2xl p-6">
+      <h2 className="text-white text-xl font-semibold mb-6">➕ Add Movie</h2>
 
-      <input
-        className="w-full p-2 mb-2 rounded text-black"
-        placeholder="Movie Title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <input
+          type="text"
+          placeholder="Movie Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          className="col-span-1 md:col-span-1 p-3 rounded bg-gray-800 text-white outline-none focus:ring-2 focus:ring-red-600"
+        />
 
-      <input
-        className="w-full p-2 mb-2 rounded text-black"
-        placeholder="Genre"
-        value={genre}
-        onChange={(e) => setGenre(e.target.value)}
-      />
+        <input
+          type="text"
+          placeholder="Genre"
+          value={genre}
+          onChange={(e) => setGenre(e.target.value)}
+          className="col-span-1 p-3 rounded bg-gray-800 text-white outline-none focus:ring-2 focus:ring-red-600"
+        />
 
-      <input
-        className="w-full p-2 mb-2 rounded text-black"
-        placeholder="Year"
-        value={year}
-        onChange={(e) => setYear(e.target.value)}
-      />
+        <input
+          type="number"
+          placeholder="Year"
+          value={year}
+          onChange={(e) => setYear(e.target.value)}
+          className="col-span-1 p-3 rounded bg-gray-800 text-white outline-none focus:ring-2 focus:ring-red-600"
+        />
 
-      <button
-        onClick={handleAddMovie}
-        className="bg-red-600 px-4 py-2 rounded hover:bg-red-700"
-      >
-        Add Movie
-      </button>
+        <input
+          type="text"
+          placeholder="Image URL"
+          value={image}
+          onChange={(e) => setImage(e.target.value)}
+          className="col-span-1 md:col-span-4 p-3 rounded bg-gray-800 text-white outline-none focus:ring-2 focus:ring-red-600"
+        />
+      </div>
+
+      <div className="flex justify-end mt-6">
+        <button
+          onClick={handleAddMovie}
+          className="bg-red-600 hover:bg-red-700 px-6 py-2 rounded text-white font-medium transition"
+        >
+          Add Movie
+        </button>
+      </div>
     </div>
   );
 }

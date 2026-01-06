@@ -1,7 +1,7 @@
 export default function SearchBar({ search, setSearch, children }) {
   return (
     <div className="w-full flex justify-center mt-4 px-4">
-      <div className="w-full max-w-7xl flex flex-wrap items-center gap-4">
+      <div className="w-full max-w-7xl flex flex-wrap items-center gap-4 mb-8 border-b border-white/10 pb-4">
         {/* Input Search*/}
         <div className="relative flex-1 max-w-lg min-w-[220px]">
           <input

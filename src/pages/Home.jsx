@@ -28,7 +28,10 @@ export default function Home() {
           <CategoryFilter category={category} setCategory={setCategory} />
         </SearchBar>
 
-        <AddMovieForm movies={movies} setMovies={setMovies} />
+        <section className="mb-12">
+          {" "}
+          <AddMovieForm movies={movies} setMovies={setMovies} />{" "}
+        </section>
         <MovieList movies={filteredMovies} setMovies={setMovies} />
       </div>
     </div>

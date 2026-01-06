@@ -62,6 +62,21 @@ export default function AddMovieForm({ movies, setMovies }) {
         />
       </div>
 
+      {image && (
+        <div className="mt-4">
+          <p className="text-gray-400 text-sm mb-2">Preview</p>
+          <img
+            src={image}
+            alt="Preview"
+            onError={(e) => {
+              e.target.src =
+                "https://via.placeholder.com/500x750?text=Invalid+Image";
+            }}
+            className="w-40 h-56 object-cover rounded-lg shadow-md"
+          />
+        </div>
+      )}
+
       <div className="flex justify-end mt-6">
         <button
           onClick={handleAddMovie}

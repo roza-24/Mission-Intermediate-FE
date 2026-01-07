@@ -1,6 +1,6 @@
-const initialMovies = [
+const MoviesData = [
   {
-    id: 1,
+    id: "1",
     title: "Inception",
     year: 2010,
     genre: "Sci-Fi",
@@ -10,7 +10,7 @@ const initialMovies = [
       "A skilled thief who steals information by infiltrating dreams is given a chance to have his past crimes erased.",
   },
   {
-    id: 2,
+    id: "2",
     title: "Interstellar",
     year: 2014,
     genre: "Sci-Fi",
@@ -20,7 +20,7 @@ const initialMovies = [
       "A group of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
   },
   {
-    id: 3,
+    id: "3",
     title: "The Dark Knight",
     year: 2008,
     genre: "Action",
@@ -30,7 +30,7 @@ const initialMovies = [
       "Batman faces the Joker, a criminal mastermind who plunges Gotham City into chaos.",
   },
   {
-    id: 4,
+    id: "4",
     title: "The Dark Knight",
     year: 2008,
     genre: "Action",
@@ -40,7 +40,7 @@ const initialMovies = [
       "Batman faces the Joker, a criminal mastermind who plunges Gotham City into chaos.",
   },
   {
-    id: 5,
+    id: "5",
     title: "Interstellar",
     year: 2014,
     genre: "Sci-Fi",
@@ -50,7 +50,7 @@ const initialMovies = [
       "A group of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
   },
   {
-    id: 6,
+    id: "6",
     title: "Inception",
     year: 2010,
     genre: "Sci-Fi",
@@ -60,7 +60,7 @@ const initialMovies = [
       "A skilled thief who steals information by infiltrating dreams is given a chance to have his past crimes erased.",
   },
   {
-    id: 7,
+    id: "7",
     title: "Inception",
     year: 2010,
     genre: "Sci-Fi",
@@ -71,4 +71,4 @@ const initialMovies = [
   },
 ];
 
-export default initialMovies;
+export default MoviesData;

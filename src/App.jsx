@@ -1,4 +1,6 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { useState } from "react";
+
 import Navbar from "./components/organisms/Navbar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -7,18 +9,37 @@ import MovieDetail from "./pages/MovieDetail";
 import Favorites from "./pages/Favorites";
 import ProtectedRoute from "./components/ProtectedRoute";
 
+import MoviesData from "./data/movies";
+
 export default function App() {
+  const [movies, setMovies] = useState(MoviesData);
+  const user = localStorage.getItem("user");
+
   return (
     <>
       <Navbar />
 
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/movie/:id" element={<MovieDetail />} />
+        {/* PUBLIC */}
+        <Route
+          path="/login"
+          element={!user ? <Login /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/register"
+          element={!user ? <Register /> : <Navigate to="/" />}
+        />
 
-        {/* Protected */}
+        {/* HOME */}
+        <Route
+          path="/"
+          element={<Home movies={movies} setMovies={setMovies} />}
+        />
+
+        {/* DETAIL */}
+        <Route path="/movie/:id" element={<MovieDetail movies={movies} />} />
+
+        {/* PROTECTED */}
         <Route
           path="/favorites"
           element={

@@ -5,7 +5,7 @@ import { useState } from "react";
 
 export default function MovieDetail() {
   const { id } = useParams();
-  const movie = movies.find((m) => m.id === Number(id));
+  const movie = movies.find((m) => m.id === id);
   const [favorite, setFavorite] = useState(isFavorite(movie.id));
 
   const toggleFavorite = () => {

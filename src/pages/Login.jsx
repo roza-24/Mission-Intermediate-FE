@@ -34,8 +34,12 @@ export default function Login() {
       return;
     }
 
-    localStorage.setItem("currentUser", JSON.stringify(found));
-    navigate("/");
+    localStorage.setItem(
+      "user",
+      JSON.stringify({
+        email,
+      })
+    );
   }
 
   return (

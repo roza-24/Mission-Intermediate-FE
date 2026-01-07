@@ -6,109 +6,124 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  // 🔐 CEK LOGIN
+  const user = JSON.parse(localStorage.getItem("user"));
+
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 20) setIsScrolled(true);
-      else setIsScrolled(false);
+      setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // 🔓 LOGOUT
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    window.location.replace("/login");
+  };
+
   return (
     <>
       {/* NAVBAR */}
       <nav
-        className={`${
+        className={`fixed top-0 left-0 w-full z-50 transition ${
           isScrolled ? "bg-black/90 shadow-lg" : "bg-black/40 backdrop-blur-md"
-        } 
-  fixed top-0 left-0 w-full z-50 py-4`} // <--- perhatikan py-4
+        }`}
       >
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           {/* LOGO */}
-          <Link
-            to="/"
-            className="text-3xl font-extrabold text-red-500 tracking-wide"
-          >
+          <Link to="/" className="text-3xl font-extrabold text-red-500">
             Chill
           </Link>
 
           {/* DESKTOP MENU */}
-          <div className="hidden md:flex items-center space-x-8 text-white font-medium">
-            <Link to="/" className="hover:text-red-400 transition">
+          <div className="hidden md:flex items-center space-x-8 text-white">
+            <Link to="/" className="hover:text-red-400">
               Home
             </Link>
-            <Link to="/favorites" className="hover:text-red-400 transition">
+
+            <Link to="/favorites" className="hover:text-red-400">
               My Favorites
             </Link>
 
-            <Link
-              to="/login"
-              className="px-5 py-2 rounded-full bg-red-600 hover:bg-red-700 
-              transition shadow-md hover:shadow-red-600/30"
-            >
-              Login
-            </Link>
+            {user ? (
+              <button
+                onClick={handleLogout}
+                className="px-5 py-2 rounded-full bg-red-600 hover:bg-red-700 transition"
+              >
+                Logout
+              </button>
+            ) : (
+              <Link
+                to="/login"
+                className="px-5 py-2 rounded-full bg-red-600 hover:bg-red-700 transition"
+              >
+                Login
+              </Link>
+            )}
           </div>
 
-          {/* MOBILE */}
+          {/* MOBILE BUTTON */}
           <button
             className="md:hidden text-white"
             onClick={() => setMenuOpen(true)}
           >
-            <Menu size={32} />
+            <Menu size={30} />
           </button>
         </div>
       </nav>
 
-      {/* MOBILE SIDE MENU */}
+      {/* MOBILE MENU */}
       <div
-        className={`fixed top-0 right-0 h-full w-64 bg-black/95 text-white z-[60] 
-        transform transition-transform duration-300 
+        className={`fixed top-0 right-0 h-full w-64 bg-black/95 text-white z-[60]
+        transform transition-transform duration-300
         ${menuOpen ? "translate-x-0" : "translate-x-full"}`}
       >
         <div className="p-6 flex justify-between items-center border-b border-white/10">
           <span className="text-2xl font-bold text-red-500">Menu</span>
-
           <button onClick={() => setMenuOpen(false)}>
-            <X size={30} />
+            <X size={28} />
           </button>
         </div>
 
-        <div className="flex flex-col space-y-6 p-6 text-lg font-medium">
-          <Link
-            to="/"
-            className="hover:text-red-400 transition"
-            onClick={() => setMenuOpen(false)}
-          >
+        <div className="flex flex-col gap-6 p-6 text-lg">
+          <Link to="/" onClick={() => setMenuOpen(false)}>
             Home
           </Link>
 
-          <Link
-            to="/favorites"
-            className="hover:text-red-400 transition"
-            onClick={() => setMenuOpen(false)}
-          >
+          <Link to="/favorites" onClick={() => setMenuOpen(false)}>
             My Favorites
           </Link>
 
-          <Link
-            to="/login"
-            className="py-2 px-4 rounded-full text-center bg-red-600 hover:bg-red-700 shadow-md 
-            hover:shadow-red-600/30 transition"
-            onClick={() => setMenuOpen(false)}
-          >
-            Login
-          </Link>
+          {user ? (
+            <button
+              onClick={() => {
+                handleLogout();
+                setMenuOpen(false);
+              }}
+              className="bg-red-600 py-2 rounded-full"
+            >
+              Logout
+            </button>
+          ) : (
+            <Link
+              to="/login"
+              onClick={() => setMenuOpen(false)}
+              className="bg-red-600 py-2 rounded-full text-center"
+            >
+              Login
+            </Link>
+          )}
         </div>
       </div>
 
-      {/* BACKDROP (untuk tutup menu) */}
+      {/* BACKDROP */}
       {menuOpen && (
         <div
-          className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 md:hidden"
+          className="fixed inset-0 bg-black/40 z-50"
           onClick={() => setMenuOpen(false)}
-        ></div>
+        />
       )}
     </>
   );

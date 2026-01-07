@@ -18,25 +18,28 @@ export default function MovieDetail() {
   };
 
   if (!movie) {
-    return (
-      <div className="flex items-center justify-center min-h-screen text-white">
-        <h2 className="text-3xl">Movie not found</h2>
-      </div>
-    );
+    return <div className="pt-24 text-center text-white">Movie not found</div>;
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white p-6">
+    <div className="min-h-screen bg-gray-900 text-white p-24">
       <Link
         to="/"
-        className="text-blue-400 hover:underline text-lg mb-4 inline-block"
+        className="text-blue-800 hover:underline text-lg mb-4 inline-block"
       >
         ← Back to Home
       </Link>
 
-      <div className="grid md:grid-cols-2 gap-10 mt-6">
-        {/* Poster */}
-        <img src={movie.poster} className="w-full rounded-xl shadow-lg" />
+      <div className="pt-24 px-6 max-w-6xl mx-auto text-white">
+        <img
+          src={
+            movie.image?.startsWith("http")
+              ? movie.image
+              : "https://via.placeholder.com/500x750?text=No+Image"
+          }
+          alt={movie.title}
+          className="w-full max-h-[520px] object-cover rounded-xl mb-8"
+        />
 
         {/* Movie Info */}
         <div className="flex flex-col gap-4">
